@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { UtilAns } from "../types/go";
+import { UtilAnsType } from "../types/go";
 
-function Table(props: UtilAns) {
+function Table(props: UtilAnsType) {
   const { mean, median, mode, stdDev } = props;
   const [calcVal, setCalcVal] = React.useState({
     mean: 0,
@@ -47,7 +47,7 @@ function Table(props: UtilAns) {
               Mean
             </td>
             <td className="text-center border-b-2 border-bottom-fin-light-green border-separate px-4 py-2">
-              {calcVal.mean}
+              {calcVal.mean.toFixed(6)}
             </td>
           </tr>
           <tr>
@@ -55,7 +55,7 @@ function Table(props: UtilAns) {
               Median
             </td>
             <td className="text-center border-b-2 border-bottom-fin-light-green border-separate px-4 py-2">
-              {calcVal.median}
+              {calcVal.median.toFixed(6)}
             </td>
           </tr>
           <tr>
@@ -68,7 +68,9 @@ function Table(props: UtilAns) {
           </tr>
           <tr>
             <td className=" px-4 py-2">Standard Deviation</td>
-            <td className="text-center px-4 py-2">{calcVal.stdDev}</td>
+            <td className="text-center px-4 py-2">
+              {calcVal.stdDev.toFixed(6)}
+            </td>
           </tr>
         </tbody>
       </table>

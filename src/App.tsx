@@ -11,12 +11,12 @@ import {
   stdDevCalc,
   sortArr,
 } from "./utils/statsCalc";
-import { UtilAns } from "./types/go";
+import { UtilAnsType } from "./types/go";
 
 function App() {
   const tstData = [0];
   const [data, setData] = React.useState(tstData);
-  const [utilAns, setUtilAns] = React.useState<UtilAns>({
+  const [utilAns, setUtilAns] = React.useState<UtilAnsType>({
     mean: 0,
     median: 0,
     mode: "",
@@ -26,12 +26,14 @@ function App() {
   const getDatafromAPI = async () => {
     const res = await axios.get("http://127.0.0.1:5000/api/v1/stats/generate");
     setData(res.data.data);
+    console.log(data);
     setUtilAns({
-      mean: meanCalc(data),
-      median: medianCalc(data),
-      mode: modeCalc(sortArr(data)).toString(),
-      stdDev: stdDevCalc(data),
+      mean: meanCalc(res.data.data),
+      median: medianCalc(res.data.data),
+      mode: modeCalc(sortArr(res.data.data)).toString(),
+      stdDev: stdDevCalc(res.data.data),
     });
+    console.log(utilAns);
   };
 
   useEffect(() => {
