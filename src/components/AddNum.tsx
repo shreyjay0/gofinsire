@@ -2,10 +2,10 @@ import React from "react";
 import Button from "./Button";
 
 type AddProps = {
-  sendNumToAdd: (e: React.MouseEvent, num: number) => void;
+  sendNumToAdd: (e: React.MouseEvent<HTMLElement>, num: number) => void;
 };
 
-function AddNum(props: AddProps) {
+const AddNum = (props: AddProps) => {
   const [addNum, setAddNum] = React.useState() as any;
   const [added, setAdded] = React.useState(false);
   const { sendNumToAdd } = props;
@@ -14,11 +14,13 @@ function AddNum(props: AddProps) {
     setAddNum(inp);
   };
 
-  const onClickAdd = (e: React.MouseEvent) => {
+  const onClickAdd = (e: React.MouseEvent<HTMLElement>) => {
     if (addNum > 0 && addNum < 1000) {
       sendNumToAdd(e, addNum);
       setAddNum(0);
       setAdded(true);
+    } else {
+      alert("Please enter a number between 1 and 999");
     }
   };
 
@@ -49,6 +51,6 @@ function AddNum(props: AddProps) {
       </div>
     </div>
   );
-}
+};
 
 export default AddNum;

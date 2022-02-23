@@ -40,8 +40,19 @@ function App() {
     getDatafromAPI();
   }, []);
 
+  useEffect(() => {
+    console.log("data changed");
+    setUtilAns({
+      mean: meanCalc(data),
+      median: medianCalc(data),
+      mode: modeCalc(sortArr(data)).toString(),
+      stdDev: stdDevCalc(data),
+    });
+  }, [data]);
+
   const sendNumToAdd = (e: React.MouseEvent, num: number) => {
-    setData([...data, num]);
+    setData([...data, Number(num)]);
+    console.log("showing addded value: ", data);
     setUtilAns({
       mean: meanCalc(data),
       median: medianCalc(data),

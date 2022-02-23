@@ -2,7 +2,7 @@ import React from "react";
 
 type BtnProps = {
   btnTxt: string;
-  onClick: (e: React.MouseEvent) => void;
+  onClick: (e: React.MouseEvent<HTMLElement>) => void;
   className?: string;
 };
 
