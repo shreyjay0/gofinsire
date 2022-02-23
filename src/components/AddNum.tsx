@@ -7,16 +7,19 @@ type AddProps = {
 
 function AddNum(props: AddProps) {
   const [addNum, setAddNum] = React.useState() as any;
+  const [added, setAdded] = React.useState(false);
   const { sendNumToAdd } = props;
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inp = e.target.value.replace(/\D/g, "");
     setAddNum(inp);
-    console.log(addNum);
   };
 
   const onClickAdd = (e: React.MouseEvent) => {
-    sendNumToAdd(e, addNum);
-    setAddNum(0);
+    if (addNum > 0 && addNum < 1000) {
+      sendNumToAdd(e, addNum);
+      setAddNum(0);
+      setAdded(true);
+    }
   };
 
   return (
@@ -34,6 +37,15 @@ function AddNum(props: AddProps) {
       </div>
       <div className="mt-10">
         <Button btnTxt="Add" onClick={onClickAdd} className="w-full" />
+      </div>
+      <div className="mt-3">
+        {added ? (
+          <div className="text-white">Number added to the current data.</div>
+        ) : (
+          <div className="text-red">
+            Please enter a number between 1 and 999.
+          </div>
+        )}
       </div>
     </div>
   );

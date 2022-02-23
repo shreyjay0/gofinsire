@@ -1,13 +1,7 @@
 import React, { useEffect } from "react";
+import { UtilAns } from "../types/go";
 
-interface TableProps {
-  mean: number;
-  median: number;
-  mode: string;
-  stdDev: number;
-}
-
-function Table(props: TableProps) {
+function Table(props: UtilAns) {
   const { mean, median, mode, stdDev } = props;
   const [calcVal, setCalcVal] = React.useState({
     mean: 0,

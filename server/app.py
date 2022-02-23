@@ -17,6 +17,6 @@ def getData():
     arr_size = random.randint(5, 20)
     arr = []
     for i in range(arr_size):
-        arr.append(random.randint(1, 100))
+        arr.append(random.randint(1, 1000))
     return jsonify({
         "data": arr}), 201
